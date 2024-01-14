@@ -8,11 +8,17 @@ class ContentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Content
+        fields = ['id', 'content', 'timestamp', 'marked', 'bits']
+
+
+class GetBitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bits
         fields = "__all__"
 
 
 class BitsSerializer(serializers.ModelSerializer):
-    # contents = ContentSerializer(many=True, source='content')
+    content = ContentSerializer(many=True)
 
     def to_representation(self, instance):
         return super().to_representation(instance)
@@ -20,3 +26,20 @@ class BitsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bits
         fields = "__all__"
+
+    def create(self, validated_data):
+        print('create started')
+        contents_data = validated_data.pop('content')
+        bits_instance = Bits.objects.create(**validated_data)
+
+        for content_data in contents_data:
+            Content.objects.create(bits=bits_instance, **content_data)
+
+        return bits_instance
+
+    def update(self, instance, validated_data):
+        print('update started')
+        instance.title = validated_data.get('title', instance.title)
+
+        instance.save()
+        return instance

@@ -3,8 +3,8 @@ from .models import *
 
 
 class BitsModel(admin.ModelAdmin):
-    list_display = ('username', 'code')
-    list_filter = ('username', 'code')
+    list_display = ('code', 'timestamp')
+    list_filter = ('code',)
     search_fields = ['name', 'code']
 
 
