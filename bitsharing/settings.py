@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bitsharing.wsgi.app'
+WSGI_APPLICATION = 'bitsharing.wsgi.application'
 
 
 # Database
