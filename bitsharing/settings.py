@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-+5@_ld^(k=zv6ih4((9pl*mp)i=r)ggl5gya^vo5$inuh9#t%g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bitsharing.wsgi.application'
+WSGI_APPLICATION = 'bitsharing.wsgi.app'
 
 
 # Database
